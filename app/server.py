@@ -42,8 +42,6 @@ class ServerProtocol(asyncio.Protocol):
 	def send_message(self, content: str):
 		message = f"{self.login}: {content}"
 		for user in self.server.clients:
-			if user.login == self.login:
-				continue
 			user.transport.write(message.encode())
 
 	def send_history(self):
